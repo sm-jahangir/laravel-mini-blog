@@ -22,8 +22,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-<<<<<<< HEAD
 Route::get('admin', [DashboardController::class, 'dashboard']);
-=======
-Route::view('admin', 'layouts.backend.app');
->>>>>>> b069553da3f249ff87cf020c0827ab5a894fa596
