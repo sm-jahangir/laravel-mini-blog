@@ -24,4 +24,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => ['auth:web'], 'prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::view('role', 'backend.roles.index');
 });
