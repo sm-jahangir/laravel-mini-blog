@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function dashboard()
     {
-        return view('backend.dashboard');
+        if (Auth::user()->can('dashboard-view')) {
+            return view('backend.dashboard');
+        } else {
+            return redirect()->route('admin.401');
+        }
+        
     }
 }
