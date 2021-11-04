@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Backend\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => ['auth:web'], 'prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
-    Route::view('role', 'backend.roles.index');
+    Route::resource('role', RoleController::class);
 });
