@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
@@ -44,7 +45,8 @@ class RoleController extends Controller
         if (!empty($permissions)) {
             $role->syncPermissions($permissions);
         }
-        return back();
+        Toastr::success('Role Created Successfully', 'Success');
+        return redirect()->route('admin.role.index');
 
     }
 

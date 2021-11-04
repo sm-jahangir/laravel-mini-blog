@@ -20,6 +20,8 @@
 
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('backend')}}/dist/css/adminlte.min.css">
+
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -56,9 +58,13 @@
     <!-- AdminLTE App -->
     <script src="{{asset('backend')}}/dist/js/adminlte.min.js"></script>
     
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     @stack('js')
+    
+    {!! Toastr::message() !!}
 </body>
 
 </html>

@@ -41,11 +41,14 @@
                         <div class="row">
                             @foreach ($all_permissions as $permission)
                             <div class="col col-md-4">
-                                <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="permissions[]" id="" value="{{ $permission->name }}">
-                                    {{$permission->name}}
-                                </label>
+
+                                <div class="form-group">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" name="permissions[]" class="custom-control-input" value="{{$permission->name}}" id="side-off-{{$permission->id}}">
+                                        <label class="custom-control-label" for="side-off-{{$permission->id}}">
+                                            <span style="font-size: 13px;" class="badge badge-pill badge-white border">{{$permission->name}}</span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                             @endforeach
