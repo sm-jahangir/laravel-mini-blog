@@ -35,9 +35,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($roles as $role)
+                            @foreach ($roles as $key=>$role)
                             <tr>
-                                <td>{{$role->id}}</td>
+                                <td>{{$key+1}}</td>
                                 <td>{{$role->name}}</td>
                                 <td>
                                     @foreach ($role->permissions as $permission)
@@ -47,7 +47,11 @@
                                 <td>{{$role->created_at->diffForHumans()}}</td>
                                 <td>
                                     <a name="" id="" class="btn btn-primary" href="#" role="button">Edit</a>
-                                    <a name="" id="" class="btn btn-danger" href="#" role="button">Delete</a>
+                                    <button class="btn btn-danger" onclick="deleteData({{ $role->id }})">Delete</button>
+                                    <form id="delete-form-{{ $role->id }}" action="{{ route('admin.role.destroy',$role->id) }}" method="post" class="d-none">
+                                        @method('DELETE')
+                                        @csrf
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -63,6 +67,28 @@
                             </tr>
                         </tfoot>
                     </table>
+                    <script>
+                        function deleteData(id) {
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: "You won't be able to revert this!",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, delete it!'
+                                }).then((result) => {
+                                if (result.isConfirmed) {
+                                    document.getElementById('delete-form-'+id).submit();
+                                    Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                    )
+                                }
+                                })
+                        }
+                    </script>
                 </div>
             </div>
         </div><!-- /.container-fluid -->

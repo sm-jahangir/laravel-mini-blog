@@ -92,6 +92,9 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::findById($id);
+        $role->delete();
+        Toastr::warning('Role Deleted Successfully', 'Danger');
+        return back();
     }
 }
