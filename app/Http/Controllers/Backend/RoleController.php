@@ -69,7 +69,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::findById($id);
+        $all_permissions = Permission::all();
+        return view('backend.roles.edit', compact('role', 'all_permissions'));
     }
 
     /**
@@ -81,7 +83,16 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = Role::findById($id);
+        $permissions = $request->input('permissions');
+
+        if (!empty($permissions)) {
+            $role->name = $request->name;
+            $role->save();
+            $role->syncPermissions($permissions);
+        }
+        Toastr::info('Role Updated Successfully', 'Info');
+        return redirect()->route('admin.role.index');
     }
 
     /**

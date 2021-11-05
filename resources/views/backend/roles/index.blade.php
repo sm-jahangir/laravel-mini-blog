@@ -46,7 +46,7 @@
                                 </td>
                                 <td>{{$role->created_at->diffForHumans()}}</td>
                                 <td>
-                                    <a name="" id="" class="btn btn-primary" href="#" role="button">Edit</a>
+                                    <a name="" id="" class="btn btn-primary" href="{{ route('admin.role.edit', $role->id) }}" role="button">Edit</a>
                                     <button class="btn btn-danger" onclick="deleteData({{ $role->id }})">Delete</button>
                                     <form id="delete-form-{{ $role->id }}" action="{{ route('admin.role.destroy',$role->id) }}" method="post" class="d-none">
                                         @method('DELETE')
