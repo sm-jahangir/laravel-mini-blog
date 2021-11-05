@@ -24,6 +24,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => ['auth:web'], 'prefix' => 'admin', 'as' => 'admin.'], function() {
+    Route::get('401', function () {
+        return "Sorry You are not authorized person";
+    })->name('401');
+
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::resource('role', RoleController::class);
 });

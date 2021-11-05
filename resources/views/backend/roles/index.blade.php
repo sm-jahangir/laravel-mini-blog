@@ -80,11 +80,6 @@
                                 }).then((result) => {
                                 if (result.isConfirmed) {
                                     document.getElementById('delete-form-'+id).submit();
-                                    Swal.fire(
-                                    'Deleted!',
-                                    'Your file has been deleted.',
-                                    'success'
-                                    )
                                 }
                                 })
                         }
