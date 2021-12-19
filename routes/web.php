@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,6 @@ Route::group(['middleware' => ['auth:web'], 'prefix' => 'admin', 'as' => 'admin.
 
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::resource('role', RoleController::class);
+    Route::resource('user', UserController::class);
+
 });
