@@ -24,14 +24,14 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                <li class="nav-item {{ Request::is('admin') ? 'menu-open' : '' }}">
+                    <a href="{{route('admin.dashboard')}}" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         Dashboard
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item {{ Request::is('admin/user*') ? 'menu-open' : '' }} {{ Request::is('admin/role*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ Request::is('admin/user*') ? 'active' : '' }} {{ Request::is('admin/role*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             User Management
@@ -40,39 +40,30 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('admin.user.create') }}" class="nav-link active">
+                            <a href="{{ route('admin.user.create') }}" class="nav-link {{ Request::is('admin/user/create') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add User</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.user.index') }}" class="nav-link">
+                            <a href="{{ route('admin.user.index') }}" class="nav-link {{ Request::is('admin/user') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>User List</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.role.create') }}" class="nav-link">
+                            <a href="{{ route('admin.role.create') }}" class="nav-link {{ Request::is('admin/role/create') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Role Add</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.role.index') }}" class="nav-link">
+                            <a href="{{ route('admin.role.index') }}" class="nav-link {{ Request::is('admin/role') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Role List</p>
                             </a>
                         </li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Simple Link
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
                 </li>
             </ul>
         </nav>
